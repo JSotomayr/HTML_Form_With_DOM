@@ -17,8 +17,6 @@ const MESSAGE = document.querySelector("#FormControlTextarea1");
 
 window.onload = () => {};
 
-Alert.addEventListener("");
-
 CREDITCARD.addEventListener("focusout", () => {
   if (
     (CREDITCARD.value.length == 16 || CREDITCARD.value.length == 19) &&
