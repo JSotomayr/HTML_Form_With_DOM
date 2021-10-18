@@ -3,7 +3,6 @@ import "bootstrap";
 import { Alert } from "bootstrap";
 import "./style.css";
 
-const ALERT = document.querySelector(".alert");
 const CREDITCARD = document.querySelector("#FormControlInput1");
 const CVC = document.querySelector("#FormControlInput2");
 const AMOUNT = document.querySelector("#FormControlInput3");
