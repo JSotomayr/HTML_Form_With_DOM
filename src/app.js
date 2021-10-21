@@ -3,6 +3,8 @@ import "bootstrap";
 import { Alert } from "bootstrap";
 import "./style.css";
 
+const SUCCESS = document.querySelector("#success");
+const FAIL = document.querySelector("#fail");
 const CREDITCARD = document.querySelector("#FormControlInput1");
 const CVC = document.querySelector("#FormControlInput2");
 const AMOUNT = document.querySelector("#FormControlInput3");
@@ -13,8 +15,28 @@ const STATE = document.querySelector("#exampleDataList");
 const LIST = document.querySelectorAll("option");
 const POSTALCODE = document.querySelector("#FormControlInput8");
 const MESSAGE = document.querySelector("#FormControlTextarea1");
+const SUBMIT = document.querySelector("form");
 
 window.onload = () => {};
+
+SUBMIT.addEventListener("submit", event => {
+  event.preventDefault();
+  if (
+    CREDITCARD.classList.contains("is-valid") &&
+    CVC.classList.contains("is-valid") &&
+    AMOUNT.classList.contains("is-valid") &&
+    FIRSTNAME.classList.contains("is-valid") &&
+    LASTNAME.classList.contains("is-valid") &&
+    CITY.classList.contains("is-valid") &&
+    STATE.classList.contains("is-valid") &&
+    POSTALCODE.classList.contains("is-valid") &&
+    MESSAGE.classList.contains("is-valid")
+  ) {
+    SUCCESS.classList.remove("d-none");
+  } else {
+    FAIL.classList.remove("d-none");
+  }
+});
 
 CREDITCARD.addEventListener("focusout", () => {
   if (
