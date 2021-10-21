@@ -20,14 +20,14 @@ window.onload = () => {};
 CREDITCARD.addEventListener("focusout", () => {
   if (
     (CREDITCARD.value.length == 16 || CREDITCARD.value.length == 19) &&
-    isNum(CREDITCARD.value)
+    isNum(CREDITCARD.value) &&
+    checkLuhn(CREDITCARD.value)
   ) {
     isValid(CREDITCARD);
   } else {
     isInvalid(CREDITCARD);
   }
 });
-
 CVC.addEventListener("focusout", () => {
   if ((CVC.value.length == 3 || CVC.value.length == 4) && isNum(CVC.value)) {
     isValid(CVC);
@@ -107,21 +107,25 @@ const isNum = number => {
   return number % 1 == 0 && number >= 0;
 };
 
-const esTarjetaValida = tarjeta => {
-  const digitos = tarjeta.split("");
-  const resultado = digitos.reduce((acumulador, valorActual, indice) => {
-    if (indice % 2 === 0) {
-      acumulador +=
-        parseInt(valorActual, 10) * 2 > 9
-          ? parseInt(valorActual, 10) * 2 - 9
-          : parseInt(valorActual, 10) * 2;
-    } else {
-      acumulador += parseInt(valorActual, 10);
+function checkLuhn(value) {
+  if (/[^0-9-\s]+/.test(value)) return false;
+
+  var nCheck = 0,
+    nDigit = 0,
+    bEven = false;
+  value = value.replace(/\D/g, "");
+
+  for (var n = value.length - 1; n >= 0; n--) {
+    var cDigit = value.charAt(n),
+      nDigit = parseInt(cDigit, 10);
+
+    if (bEven) {
+      if ((nDigit *= 2) > 9) nDigit -= 9;
     }
 
-    return acumulador;
-  }, 0);
-  const esValido = resultado % 10 === 0;
+    nCheck += nDigit;
+    bEven = !bEven;
+  }
 
-  return esValido;
-};
+  return nCheck % 10 == 0;
+}

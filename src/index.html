@@ -26,11 +26,22 @@
           <h1>Payment form</h1>
         </div>
         <div class="card-body">
-          <div class="alert alert-danger px-2 mx-2 mt-1" role="alert">
+          <div
+            class="alert alert-danger px-2 mx-2 mt-1 d-none"
+            role="alert"
+            id="fail"
+          >
             <strong>Some fields are missing</strong>
           </div>
+          <div
+            class="alert alert-success px-2 mx-2 mt-1 d-none"
+            role="alert"
+            id="success"
+          >
+            <strong>Everything completed!</strong>
+          </div>
           <form>
-            <div class="row px-2">
+            <div class="row px-2 pt-3">
               <div class="col md-auto">
                 <div class="mb-3">
                   <label for="FormControlInput1" class="form-label"
